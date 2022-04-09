@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h2>Ajouter une équipe :</h2>
+<h:form>
+    <h:outputLabel for="equipe" value="Equipe : " />
+    <h:inputText id="equipe" value="#{admin.equipe}">
+        <f:validateRegex pattern="^[a-zA-Z]{5,32}$" for="equipe" />
+    </h:inputText>
+    <h:message for="equipe" /><br />
+    <h:commandButton action="#{admin.insertEquipe()}" value="Ajouter équipe" />
+</h:form>
+<h2>Ajouter un match :</h2>
+<h:form>
+    <h:outputLabel for="equipe1" value="Entrer le nom de l'équipe 1 : " />
+    <h:inputText id="equipe1" value="#{admin.equipe1}">
+        <f:validateRegex pattern="^[a-zA-Z]{5,32}$" for="equipe1" />
+    </h:inputText>
+    <h:message for="equipe2" /><br />
+    <h:outputLabel for="equipe2" value="Entrer le nom de l'équipe 2 : " />
+    <h:inputText id="equipe2" value="#{admin.equipe2}">
+        <f:validateRegex pattern="^[a-zA-Z]{5,32}$" for="equipe2" />
+    </h:inputText>
+    <h:message for="equipe2" /><br />
+    <h:commandButton action="#{admin.insertMatch()}" value="Ajouter le match" />
+</h:form>
+<h2>Saisir résultat d'un match :</h2>
+<h:form>
+    <h:outputLabel for="e1" value="Equipe gagnante :" />
+    <h:selectOneMenu id="e1" value="#{admin.equipe1}">
+            <f:selectItems value="#{admin.getEquipes()}" />
+    </h:selectOneMenu>
+    <h:message for="e1" />
+
+    <h:outputLabel for="scoreWin" value="Score : " />
+    <h:inputText id="scoreWin" value="#{admin.winner}">
+        <f:validateRegex pattern="^{[0-30]$}" for="scoreWin" />
+    </h:inputText>
+    <h:message for="scoreWin" /><br />
+
+    <h:outputLabel for="e2" value="Equipe perdante :" />
+    <h:selectOneMenu id="e2" value="#{admin.equipe2}">
+        <f:selectItems value="#{admin.getEquipes()}" />
+    </h:selectOneMenu>
+    <h:message for="e2" />
+
+    <h:outputLabel for="scoreLost" value="Score : " />
+    <h:inputText id="scoreLost" value="#{admin.winner}">
+        <f:validateRegex pattern="^{[0-30]$}" for="scoreLost" />
+    </h:inputText>
+    <h:message for="scoreLost" /><br />
+    <h:commandButton action="#{admin.insertResult()}" value="Ajouter le résultat" />
+</h:form>
+
+</html>
